@@ -1,0 +1,935 @@
+/* ============================================
+   АНГАРСКИЙ ПОЛИТЕХНИЧЕСКИЙ ТЕХНИКУМ (АПТ)
+   Официальный стиль
+   ============================================ */
+
+/* Базовые настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', 'Times New Roman', Georgia, serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background-color: #f5f7fa;
+}
+
+/* ===== Цветовая схема =====
+   Синий - цвет образования и доверия
+   Бордовый - цвет традиций и академичности
+   Золотой - цвет достижений и качества
+   ========================= */
+
+:root {
+    --apt-blue: #1a4d8c;
+    --apt-dark-blue: #0e3a6b;
+    --apt-gold: #c9a03d;
+    --apt-burgundy: #8b3c2c;
+    --apt-gray: #6c757d;
+    --apt-light-gray: #e9ecef;
+    --apt-white: #ffffff;
+}
+
+/* Шапка сайта */
+header {
+    background: linear-gradient(135deg, var(--apt-blue) 0%, var(--apt-dark-blue) 100%);
+    color: var(--apt-white);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--apt-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Навигация */
+nav {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+nav a {
+    color: var(--apt-white);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    margin: 0 0.25rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+}
+
+nav a:hover {
+    background: var(--apt-gold);
+    color: var(--apt-dark-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Основной контент */
+main {
+    max-width: 1300px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    min-height: 60vh;
+}
+
+main h2 {
+    color: var(--apt-blue);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--apt-gold);
+    display: inline-block;
+    font-weight: 600;
+}
+
+/* Hero секция */
+.hero {
+    background: linear-gradient(135deg, var(--apt-blue) 0%, var(--apt-dark-blue) 100%);
+    color: var(--apt-white);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero h2 {
+    color: var(--apt-white);
+    border-bottom-color: var(--apt-gold);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* Статистика */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+    margin: 2rem 0 3rem;
+}
+
+.stat-card {
+    background: var(--apt-white);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 4px solid var(--apt-gold);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.stat-card h3 {
+    color: var(--apt-blue);
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--apt-gold);
+    font-family: 'Times New Roman', serif;
+}
+
+/* Новости */
+.news-item {
+    background: var(--apt-white);
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--apt-gold);
+    transition: all 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.news-item h3 {
+    color: var(--apt-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.news-item small {
+    color: var(--apt-gray);
+    font-size: 0.85rem;
+}
+
+/* Карточки для студентов и преподавателей */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--apt-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+}
+
+.card-avatar {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-right: 3px solid var(--apt-gold);
+}
+
+.card-info {
+    padding: 1.2rem;
+    flex: 1;
+}
+
+.card-info h3 {
+    color: var(--apt-blue);
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border-left: 3px solid var(--apt-gold);
+    padding-left: 0.75rem;
+}
+
+.card-info p {
+    margin: 0.4rem 0;
+    font-size: 0.85rem;
+    color: var(--apt-gray);
+}
+
+.card-info p strong {
+    color: var(--apt-dark-blue);
+    font-weight: 600;
+}
+
+/* Страница "О техникуме" */
+.about-section {
+    background: var(--apt-white);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.about-section h2 {
+    color: var(--apt-blue);
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.about-section h2:first-of-type {
+    margin-top: 0;
+}
+
+.about-section p {
+    margin: 1rem 0;
+    line-height: 1.7;
+    color: #2c3e50;
+}
+
+.about-section ul {
+    margin: 1rem 0 1.5rem 2rem;
+    list-style: none;
+}
+
+.about-section ul li {
+    margin: 0.6rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.about-section ul li::before {
+    content: "▹";
+    color: var(--apt-gold);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Контакты */
+.contacts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+}
+
+.contact-info, .contact-form {
+    background: var(--apt-white);
+    padding: 2rem;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.contact-info:hover, .contact-form:hover {
+    transform: translateY(-5px);
+}
+
+.contact-info h2, .contact-form h2 {
+    color: var(--apt-blue);
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+}
+
+.contact-info p {
+    margin: 0.8rem 0;
+    line-height: 1.6;
+}
+
+.contact-info p strong {
+    color: var(--apt-dark-blue);
+    min-width: 100px;
+    display: inline-block;
+}
+
+/* Форма обратной связи */
+.contact-form div {
+    margin-bottom: 1.2rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--apt-blue);
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--apt-light-gray);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--apt-gold);
+    background: var(--apt-white);
+    box-shadow: 0 0 0 3px rgba(201,160,61,0.1);
+}
+
+.contact-form button {
+    background: linear-gradient(135deg, var(--apt-blue) 0%, var(--apt-dark-blue) 100%);
+    color: var(--apt-white);
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-form button:hover {
+    background: var(--apt-gold);
+    color: var(--apt-dark-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.success {
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #28a745;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #dc3545;
+}
+
+/* Подвал */
+footer {
+    background: var(--apt-dark-blue);
+    color: var(--apt-white);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-top: 4px solid var(--apt-gold);
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    nav a {
+        display: inline-block;
+        margin: 0.25rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    main {
+        padding: 0 1rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card {
+        flex-direction: column;
+    }
+    
+    .card-avatar {
+        width: 100%;
+        height: 150px;
+        border-right: none;
+        border-bottom: 3px solid var(--apt-gold);
+    }
+    
+    .contacts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero {
+        padding: 1.5rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.3rem;
+    }
+    
+    .about-section {
+        padding: 1.5rem;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card, .stat-card, .news-item, .about-section, .contact-info, .contact-form {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Герб/логотип (можно добавить позже) */
+.logo-placeholder {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: var(--apt-gold);
+    border-radius: 50%;
+    margin-right: 15px;
+    vertical-align: middle;
+    line-height: 60px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* Таблицы (для дополнительных страниц) */
+.academic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--apt-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.academic-table th {
+    background: var(--apt-blue);
+    color: var(--apt-white);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.academic-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--apt-light-gray);
+}
+
+.academic-table tr:hover {
+    background: rgba(26,77,140,0.05);
+}
+
+/* ===== ГАЛЕРЕЯ ФОТО НА ГЛАВНОЙ ===== */
+.gallery-section {
+    margin: 3rem 0;
+}
+
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    background: var(--apt-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    padding: 1rem;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.gallery-caption h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: var(--apt-gold);
+}
+
+.gallery-caption p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .gallery-item img {
+        height: 200px;
+    }
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.3s; }
+.gallery-item:nth-child(3) { animation-delay: 0.5s; }
+
+/* ===== ГАЛЕРЕЯ ФОТО - ВСЕ ФОТО ОДИНАКОВОГО РАЗМЕРА ===== */
+.gallery-section {
+    margin: 3rem 0;
+}
+
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    background: var(--apt-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+}
+
+/* ВСЕ ФОТО ОДИНАКОВОГО РАЗМЕРА */
+.gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+/* Для портретных фото - обрезаем сверху и снизу */
+.gallery-item img.portrait {
+    object-position: center 30%;
+}
+
+/* Для ландшафтных фото - показываем центр */
+.gallery-item img.landscape {
+    object-position: center center;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    padding: 1rem;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.gallery-caption h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: var(--apt-gold);
+}
+
+.gallery-caption p {
+    font-size: 0.85rem;
+    opacity: 0.95;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .gallery-item img {
+        height: 220px;
+    }
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.3s; }
+.gallery-item:nth-child(3) { animation-delay: 0.5s; }
+
+/* Ручная настройка обрезки для каждого фото */
+.gallery-item:nth-child(1) img {
+    object-position: center 40%;  /* Настройка для первого фото */
+}
+
+.gallery-item:nth-child(2) img {
+    object-position: center 35%;  /* Настройка для второго фото */
+}
+
+.gallery-item:nth-child(3) img {
+    object-position: center 50%;  /* Настройка для третьего фото */
+}
+
+/* Если фото слишком светлое, добавляем затемнение */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* ===== ГОРИЗОНТАЛЬНАЯ ГАЛЕРЕЯ ===== */
+.gallery-section {
+    margin: 3rem 0;
+    overflow-x: auto;
+}
+
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Горизонтальный скролл (если фото не помещаются) */
+.gallery-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery-item {
+    flex: 0 0 320px;
+    max-width: 320px;
+    background: var(--apt-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+}
+
+/* ВСЕ ФОТО СТРОГО ОДИНАКОВОГО РАЗМЕРА */
+.gallery-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    padding: 1rem;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+    color: white;
+}
+
+.gallery-caption h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--apt-gold);
+}
+
+.gallery-caption p {
+    font-size: 0.8rem;
+    opacity: 0.95;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .gallery-grid {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .gallery-item {
+        flex: 0 0 280px;
+        max-width: 280px;
+    }
+    
+    .gallery-item img {
+        height: 200px;
+    }
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.3s; }
+.gallery-item:nth-child(3) { animation-delay: 0.5s; }
+
+/* ГАЛЕРЕЯ ФОТО - ФИКСИРОВАННЫЙ РАЗМЕР */
+.gallery-section {
+    margin: 3rem 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+}
+
+.image-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #1a4d8c;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .image-container img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    padding: 1rem;
+    text-align: center;
+    background: white;
+}
+
+.gallery-caption h3 {
+    color: #1a4d8c;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+.gallery-caption p {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .image-container {
+        height: 200px;
+    }
+}
