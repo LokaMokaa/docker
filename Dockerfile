@@ -17,7 +17,17 @@ COPY ./www/ /var/www/html/
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
-EXPOSE ${PORT:-80}
+# Создаем правильный ports.conf
+RUN echo "Listen 8080" > /etc/apache2/ports.conf && \
+    echo "<IfModule mod_ssl.c>" >> /etc/apache2/ports.conf && \
+    echo "    Listen 443" >> /etc/apache2/ports.conf && \
+    echo "</IfModule>" >> /etc/apache2/ports.conf
 
-# Правильная настройка порта и MPM
-CMD ["/bin/bash", "-c", "echo 'Listen ${PORT:-80}' > /etc/apache2/ports.conf && a2dismod mpm_event mpm_worker 2>/dev/null; a2enmod mpm_prefork; apache2-foreground"]
+# Отключаем MPM конфликты
+RUN a2dismod mpm_event mpm_worker || true && \
+    a2enmod mpm_prefork
+
+EXPOSE 8080
+
+# Запуск Apache
+CMD ["apache2-foreground"]
