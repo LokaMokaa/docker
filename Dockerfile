@@ -19,5 +19,7 @@ RUN chown -R www-data:www-data /var/www/html && \
 
 EXPOSE 80
 
-# КРИТИЧНО ДЛЯ RAILWAY: Исправляем MPM при запуске
-CMD ["/bin/bash", "-c", "a2dismod mpm_event mpm_worker 2>/dev/null; a2enmod mpm_prefork; apache2-foreground"]
+# ... (все остальные инструкции COPY, RUN и т.д. у вас остаются как есть)
+
+# Делаем так, чтобы Apache слушал порт от Railway или 80 по умолчанию
+CMD ["/bin/bash", "-c", "a2dismod mpm_event mpm_worker 2>/dev/null; a2enmod mpm_prefork; sed -i 's/80/${PORT:-80}/g' /etc/apache2/ports.conf; apache2-foreground"]
