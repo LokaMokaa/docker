@@ -2,13 +2,21 @@
 require_once 'auth.php';
 header('Content-Type: text/html; charset=utf-8');
 
-$host = getenv('DB_HOST') ?: 'db';
-$user = getenv('DB_USER') ?: 'webuser';
-$pass = getenv('DB_PASSWORD') ?: 'webpass';
-$dbname = 'apt';
+// Универсальное подключение для Railway и локальной разработки
+$host = getenv('MYSQLHOST') ?: (getenv('DB_HOST') ?: 'db');
+$user = getenv('MYSQLUSER') ?: (getenv('DB_USER') ?: 'webuser');
+$pass = getenv('MYSQLPASSWORD') ?: (getenv('DB_PASSWORD') ?: 'webpass');
+$dbname = getenv('MYSQLDATABASE') ?: 'apt';
+$port = getenv('MYSQLPORT') ?: 3306;
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+// Создаем подключение с портом
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 $conn->set_charset("utf8mb4");
+
+// Проверка подключения (для отладки, потом можно убрать)
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 $students_count = $conn->query("SELECT COUNT(*) as count FROM students")->fetch_assoc()['count'] ?? 0;
 $teachers_count = $conn->query("SELECT COUNT(*) as count FROM teachers")->fetch_assoc()['count'] ?? 0;
