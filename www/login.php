@@ -2,13 +2,21 @@
 session_start();
 require_once 'auth.php';
 
-$host = getenv('DB_HOST') ?: 'db';
-$user = getenv('DB_USER') ?: 'webuser';
-$pass = getenv('DB_PASSWORD') ?: 'webpass';
-$dbname = 'apt';
+// Настройки подключения к БД на Railway
+$host = 'interchange.proxy.rlwy.net';
+$user = 'root';
+$pass = 'OSUSjygwBrpoZbeAiufeIykPRQRLaWpl';
+$dbname = 'railway';  // На хостинге база называется railway, не apt
+$port = 10699;
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+// Подключение с указанием порта
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 $conn->set_charset("utf8mb4");
+
+// Проверка подключения
+if ($conn->connect_error) {
+    die("Ошибка подключения к базе данных: " . $conn->connect_error);
+}
 
 $error = '';
 
