@@ -3,13 +3,19 @@ session_start();
 require_once 'auth.php';
 requireAdmin();
 
-$host = getenv('DB_HOST') ?: 'db';
-$user = getenv('DB_USER') ?: 'webuser';
-$pass = getenv('DB_PASSWORD') ?: 'webpass';
-$dbname = 'apt';
+// Настройки подключения к БД на Railway
+$host = 'interchange.proxy.rlwy.net';
+$user = 'root';
+$pass = 'OSUSjygwBrpoZbeAiufeIykPRQRLaWpl';
+$dbname = 'railway';
+$port = 10699;
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 $conn->set_charset("utf8mb4");
+
+if ($conn->connect_error) {
+    die("Ошибка подключения: " . $conn->connect_error);
+}
 
 $message = '';
 $error = '';
@@ -83,6 +89,7 @@ $teachers = $conn->query("SELECT * FROM teachers ORDER BY id");
         .message { background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
         .error { background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
         .section-title { margin-top: 2rem; color: #1a4d8c; border-bottom: 2px solid #c9a03d; display: inline-block; }
+        .avatar-preview { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
     </style>
 </head>
 <body>
@@ -121,10 +128,11 @@ $teachers = $conn->query("SELECT * FROM teachers ORDER BY id");
         <h3 class="section-title">🎓 Студенты</h3>
         <button class="btn-add" onclick="openModal('students', 'add')">+ Добавить студента</button>
         <table class="admin-table">
-            <tr><th>ID</th><th>ФИО</th><th>Студ.билет</th><th>Группа</th><th>Специальность</th><th>Курс</th><th>Телефон</th><th>Email</th><th>Действия</th></tr>
+            <tr><th>ID</th><th>Фото</th><th>ФИО</th><th>Студ.билет</th><th>Группа</th><th>Специальность</th><th>Курс</th><th>Телефон</th><th>Email</th><th>Действия</th></tr>
             <?php while($row = $students->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
+                <td><img src="<?php echo htmlspecialchars($row['avatar_url'] ?: 'https://via.placeholder.com/40/cccccc/ffffff?text=?'); ?>" class="avatar-preview" onerror="this.src='https://via.placeholder.com/40/cccccc/ffffff?text=?'"></td>
                 <td><?php echo htmlspecialchars($row['full_name']); ?></td>
                 <td><?php echo $row['student_card']; ?></td>
                 <td><?php echo $row['group_name']; ?></td>
@@ -149,10 +157,11 @@ $teachers = $conn->query("SELECT * FROM teachers ORDER BY id");
         <h3 class="section-title">👨‍🏫 Преподаватели</h3>
         <button class="btn-add" onclick="openModal('teachers', 'add')">+ Добавить преподавателя</button>
         <table class="admin-table">
-            <tr><th>ID</th><th>ФИО</th><th>Таб.номер</th><th>Кафедра</th><th>Должность</th><th>Степень</th><th>Стаж</th><th>Телефон</th><th>Email</th><th>Действия</th></tr>
+            <tr><th>ID</th><th>Фото</th><th>ФИО</th><th>Таб.номер</th><th>Кафедра</th><th>Должность</th><th>Степень</th><th>Стаж</th><th>Телефон</th><th>Email</th><th>Действия</th></tr>
             <?php while($row = $teachers->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
+                <td><img src="<?php echo htmlspecialchars($row['avatar_url'] ?: 'https://via.placeholder.com/40/cccccc/ffffff?text=?'); ?>" class="avatar-preview" onerror="this.src='https://via.placeholder.com/40/cccccc/ffffff?text=?'"></td>
                 <td><?php echo htmlspecialchars($row['full_name']); ?></td>
                 <td><?php echo $row['teacher_card']; ?></td>
                 <td><?php echo $row['department']; ?></td>
@@ -205,6 +214,7 @@ $teachers = $conn->query("SELECT * FROM teachers ORDER BY id");
                     <label>Курс</label><input name="course" type="number" value="${data?.course || ''}" required>
                     <label>Телефон</label><input name="phone" value="${data?.phone || ''}">
                     <label>Email</label><input name="email" type="email" value="${data?.email || ''}">
+                    <label>URL фото</label><input name="avatar_url" value="${data?.avatar_url || ''}" placeholder="https://...">
                 `;
                 document.getElementById('modal-title').innerText = action === 'add' ? '➕ Добавить студента' : '✏️ Редактировать студента';
             } else {
@@ -217,6 +227,7 @@ $teachers = $conn->query("SELECT * FROM teachers ORDER BY id");
                     <label>Стаж (лет)</label><input name="experience_years" type="number" value="${data?.experience_years || ''}">
                     <label>Телефон</label><input name="phone" value="${data?.phone || ''}">
                     <label>Email</label><input name="email" type="email" value="${data?.email || ''}">
+                    <label>URL фото</label><input name="avatar_url" value="${data?.avatar_url || ''}" placeholder="/uploads/teachers/professorov.jpg">
                 `;
                 document.getElementById('modal-title').innerText = action === 'add' ? '➕ Добавить преподавателя' : '✏️ Редактировать преподавателя';
             }
