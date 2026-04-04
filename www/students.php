@@ -1,12 +1,20 @@
-<?php session_start(); require_once "auth.php"; requireUser(); ?>
+<?php 
+session_start(); 
+require_once "auth.php"; 
+requireUser(); 
+?>
+
 <?php
 header('Content-Type: text/html; charset=utf-8');
-$host = getenv('DB_HOST') ?: 'db';
-$user = getenv('DB_USER') ?: 'webuser';
-$pass = getenv('DB_PASSWORD') ?: 'webpass';
-$dbname = 'apt';
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+// Настройки подключения к БД на Railway
+$host = 'interchange.proxy.rlwy.net';
+$user = 'root';
+$pass = 'OSUSjygwBrpoZbeAiufeIykPRQRLaWpl';
+$dbname = 'railway';
+$port = 10699;
+
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 $conn->set_charset("utf8mb4");
 
 if ($conn->connect_error) {
@@ -28,7 +36,7 @@ $result = $conn->query($sql);
 <body>
     <header>
         <h1>🎓 Студенты АПТ</h1>
-<nav>
+        <nav>
             <a href="index.php">Главная</a>
             <a href="about.php">О техникуме</a>
             <a href="contacts.php">Контакты</a>
