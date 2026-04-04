@@ -2,10 +2,6 @@
 session_start(); 
 require_once "auth.php"; 
 requireUser(); 
-?>
-
-<?php
-header('Content-Type: text/html; charset=utf-8');
 
 // Настройки подключения к БД на Railway
 $host = 'interchange.proxy.rlwy.net';
@@ -40,14 +36,14 @@ $result = $conn->query($sql);
             <a href="index.php">Главная</a>
             <a href="about.php">О техникуме</a>
             <a href="contacts.php">Контакты</a>
-            <?php if (isUser()): ?>
+            <?php if (function_exists('isUser') && isUser()): ?>
                 <a href="students.php">Студенты</a>
                 <a href="teachers.php">Преподаватели</a>
             <?php endif; ?>
-            <?php if (isAdmin()): ?>
+            <?php if (function_exists('isAdmin') && isAdmin()): ?>
                 <a href="admin_panel.php">🔧 Админ-панель</a>
             <?php endif; ?>
-            <?php if (isLoggedIn()): ?>
+            <?php if (function_exists('isLoggedIn') && isLoggedIn()): ?>
                 <a href="logout.php" style="background: #8b3c2c;">👤 <?php echo $_SESSION['username']; ?> (Выход)</a>
             <?php else: ?>
                 <a href="login.php">🔐 Вход</a>
@@ -61,7 +57,7 @@ $result = $conn->query($sql);
             <?php if ($result && $result->num_rows > 0): ?>
                 <?php while($row = $result->fetch_assoc()): ?>
                     <div class="card">
-                        <img src="<?php echo htmlspecialchars($row['avatar_url']); ?>" alt="<?php echo htmlspecialchars($row['full_name']); ?>" class="card-avatar">
+                        <img src="<?php echo htmlspecialchars($row['avatar_url']); ?>" alt="<?php echo htmlspecialchars($row['full_name']); ?>" class="card-avatar" onerror="this.src='https://via.placeholder.com/150/cccccc/ffffff?text=Нет+фото'">
                         <div class="card-info">
                             <h3><?php echo htmlspecialchars($row['full_name']); ?></h3>
                             <p><strong>Студенческий билет:</strong> <?php echo htmlspecialchars($row['student_card']); ?></p>
