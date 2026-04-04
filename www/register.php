@@ -2,13 +2,20 @@
 session_start();
 require_once 'auth.php';
 
-$host = getenv('DB_HOST') ?: 'db';
-$user = getenv('DB_USER') ?: 'webuser';
-$pass = getenv('DB_PASSWORD') ?: 'webpass';
-$dbname = 'apt';
+// Настройки подключения к БД на Railway
+$host = 'interchange.proxy.rlwy.net';
+$user = 'root';
+$pass = 'OSUSjygwBrpoZbeAiufeIykPRQRLaWpl';
+$dbname = 'railway';
+$port = 10699;
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 $conn->set_charset("utf8mb4");
+
+// Проверка подключения
+if ($conn->connect_error) {
+    die("Ошибка подключения к базе данных: " . $conn->connect_error);
+}
 
 $error = '';
 $success = '';
@@ -25,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Пароли не совпадают';
     } elseif (strlen($password) < 6) {
         $error = 'Пароль должен быть не менее 6 символов';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Введите корректный email';
     } else {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
         
